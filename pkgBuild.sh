@@ -15,7 +15,7 @@ backup=()
 install=''
 source=(
     "https://github.com/m0n0l0c0/mutant/archive/v${pkgver}.tar.gz"
-    "https://github.com/m0n0l0c0/mutant-packager.git"
+    "git+https://github.com/m0n0l0c0/mutant-packager.git"
 )
 md5sums=('')
 
