@@ -1,5 +1,8 @@
 #!/bin/bash
 
+prevDir="$(pwd)"
+cd "$1"
+
 arch=x64
 ./node_modules/.bin/electron-packager ./ Mutant \
 	--platform=linux \
@@ -18,3 +21,5 @@ arch=x64
 
 # Ownership
 # echo "Please change ownership of the executable with 'chmod 755 Mutant-linux-${arch}'"
+
+cd "${prevDir}"

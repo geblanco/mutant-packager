@@ -1,3 +1,8 @@
+#!/bin/bash
+
+prevDir="$(pwd)"
+cd "$1"
+
 # Electron's version.
 export npm_config_target=1.4.0
 # The architecture of Electron, can be ia32 or x64.
@@ -10,3 +15,5 @@ export npm_config_runtime=electron
 export npm_config_build_from_source=true
 # Install all dependencies, and store cache to ~/.electron-gyp.
 HOME=~/.electron-gyp npm install
+
+cd "$prevDir"
