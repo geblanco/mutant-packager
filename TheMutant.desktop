@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Version=1.0
-Name=The Mutant
-Comment=Efficiency program
-Exec=electron /home/gb/Documents/Dev/mutant
-Terminal=false
-Type=Application
-Categories=Utility;

@@ -1,16 +1,20 @@
 #!/bin/bash
 
-prevDir="$(pwd)"
+# Enter Working Dir (shall be project root)
+prevDir=$(dirname $0)
 cd "$1"
 
 echo "==> Search theme..."
+theme="Adwaita"
+# Guess settings agent
 if test `which gtk-query-settings`; then
-  echo "{\"theme\": $(gtk-query-settings gtk-icon-theme-name | awk '{print $2}') }" > ./misc/theme.json
+  theme="$(gtk-query-settings gtk-icon-theme-name | awk '{print $2}')"
 else
-  echo "{\"theme\": $(gsettings get org.gnome.desktop.interface icon-theme | sed -e 's/'\''/"/g') }" > ./misc/theme.json
+  theme="$(gsettings get org.gnome.desktop.interface icon-theme | sed -e 's/'\''/"/g')"
 fi
-echo "==> Found: $(cat ../misc/theme.json)"
-
+echo "==> Found: $theme"
+# Save theme
+echo "{\"theme\": $theme }" > ./misc/theme.json
 echo "==> Compile..."
 chmod 755 "./gtkcc.sh"
 ./gtkcc.sh listApps
@@ -18,4 +22,4 @@ echo "==> Move"
 mv listApps ./apps/native/listApps
 echo "==> Done"
 
-cd "${prevDir}"
+cd prevDir

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-prevDir="$(pwd)"
+# Enter Working Dir (shall be project root)
+prevDir=$(pwd)
 cd "$1"
 
 # Electron's version.
@@ -16,4 +17,4 @@ export npm_config_build_from_source=true
 # Install all dependencies, and store cache to ~/.electron-gyp.
 HOME=~/.electron-gyp npm install
 
-cd "$prevDir"
+cd $prevDir
