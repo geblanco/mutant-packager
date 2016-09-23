@@ -1,0 +1,1 @@
+Package scripts for [mutant](http://github.com/m0n0l0c0/Mutant)
