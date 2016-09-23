@@ -13,13 +13,12 @@ provides=('mutant')
 arch=('x86_64')
 license=('MIT')
 depends=(
-  #'pkg-config'
-  #'sqlite'
-  #'git'
-  #'npm'
-  #'gtk3'
-  #'librsvg'
-  #'base-devel'
+  'pkg-config'
+  'sqlite'
+  'git'
+  'npm'
+  'gtk3'
+  'librsvg'
 )
 makedepends=()
 backup=()
@@ -34,8 +33,6 @@ sha256sums=(
 )
 
 package() {
-  # Prepare executable files
-  #chmod 755 -R "$srcdir/mutant-packager-0.1.1/"
   # Launch npm installer
   echo "==> Launch installer"
   "$srcdir/mutant-packager-0.1.1/install.sh" "$srcdir/Mutant-$pkgver"
