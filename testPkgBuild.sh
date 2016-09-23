@@ -66,7 +66,7 @@ package() {
   ln -s ../../opt/mutant/mutant "$pkgdir"/usr/bin/mutant
 
   install -D -m644 "./Mutant.desktop" "${pkgdir}/usr/share/applications/Mutant.desktop"
-  install -D -m644 "./mutant.png" "${pkgdir}/usr/share/pixmaps/mutant.png"
+  install -D -m644 "./icns/mutant.png" "${pkgdir}/usr/share/pixmaps/mutant.png"
 }
 
 package
