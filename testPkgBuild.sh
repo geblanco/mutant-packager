@@ -20,15 +20,15 @@ cp -r "$baseDir/mutant-packager" "$baseDir/test/build/pkg/mutant-packager"
 
 srcdir="$(pwd)/src"
 pkgdir="$(pwd)/pkg"
+pkgname="mutant"
 arch="x64"
 
 package() {
   # Prepare executable files
-  echo "==> Make files executable"
-  chmod 755 -R "$srcdir/mutant-packager/"
+  #chmod 755 -R "$srcdir/mutant-packager-0.1.0/"
   # Launch npm installer
   echo "==> Launch installer"
-  "$srcdir/mutant-packager/install.sh" "${srcdir}/mutant"
+  "$srcdir/mutant-packager-0.1.0/install.sh" "$srcdir/Mutant-$pkgver"
   # Generate theme and list apps
     echo "==> Search theme..."
     # Default theme in most distros
@@ -41,32 +41,31 @@ package() {
     fi
     echo "==> Found: $theme"
     # Save theme
-    echo "{\"theme\": $theme }" > "$srcdir/mutant/misc/theme.json"
+    echo "{\"theme\": $theme }" > "$srcdir/Mutant-$pkgver/misc/theme.json"
     echo "==> Compile..."
     # Make compiler executable
-    chmod 755 "$srcdir/mutant-packager/gtkcc.sh"
-    "$srcdir/mutant-packager/gtkcc.sh" "$srcdir/mutant-packager/listApps"
+    chmod 755 "$srcdir/mutant-packager-0.1.0/gtkcc.sh"
+    "$srcdir/mutant-packager-0.1.0/gtkcc.sh" "$srcdir/mutant-packager-0.1.0/listApps"
     echo "==> Move"
     # Copy listApps to dst folder
-    mv "$srcdir/mutant-packager/listApps" "$srcdir/mutant/apps/native/listApps"
+    mv "$srcdir/mutant-packager-0.1.0/listApps" "$srcdir/Mutant-$pkgver/apps/native/listApps"
     # Make listApps executable
-    chmod 755 "$srcdir/mutant/apps/native/listApps"
+    chmod 755 "$srcdir/Mutant-$pkgver/apps/native/listApps"
     echo "==> Done"
   
   # Make the program itself
-  "$srcdir/mutant-packager/mkDist.sh" "$srcdir/mutant"
-
+  "$srcdir/mutant-packager-0.1.0/mkDist.sh" "$srcdir/Mutant-$pkgver"
+  # Create necessary dirs
+  install -dm755 "$pkgdir"/{opt,usr/{bin,share}}
   # Copy executable to fakeroot
-  cp -r "$srcdir/mutant/mutant-linux-$arch" "$pkgdir/opt/mutant"
-
+  cp -R "$srcdir/Mutant-$pkgver/$pkgname-linux-x64" "$pkgdir/opt/$pkgname"
   # Set permissions on pkgdir
-  find "$pkgdir/opt/mutant/" -type f -exec chmod 644 {} \;
-  chmod 755 "$pkgdir/opt/mutant/mutant"
+  chmod 755 "$pkgdir/opt/$pkgname/$pkgname"
+  install -Dm644 "$srcdir/mutant-packager-0.1.0/mutant.desktop" "${pkgdir}/usr/share/applications/$pkgname.desktop"
+  install -Dm644 "$srcdir/mutant-packager-0.1.0/icns/$pkgname.png" "${pkgdir}/usr/share/pixmaps/$pkgname.png"
 
-  ln -s ../../opt/mutant/mutant "$pkgdir"/usr/bin/mutant
+  ln -s "/opt/$pkgname/$pkgname" "$pkgdir/usr/bin/$pkgname"
 
-  install -D -m644 "./Mutant.desktop" "${pkgdir}/usr/share/applications/Mutant.desktop"
-  install -D -m644 "./icns/mutant.png" "${pkgdir}/usr/share/pixmaps/mutant.png"
 }
 
 package
