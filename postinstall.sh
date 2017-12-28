@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Enter Working Dir (shall be project root)
-prevDir=$(dirname $0)
-cd "$1"
+# prevDir=$(dirname $0)
+# cd "$1"
 
 echo "==> Search theme..."
 theme="Adwaita"
@@ -14,12 +14,13 @@ else
 fi
 echo "==> Found: $theme"
 # Save theme
-echo "{\"theme\": $theme }" > ./misc/theme.json
+# echo "{\"theme\": $theme }" > ./misc/theme.json
 echo "==> Compile..."
-chmod 755 "./gtkcc.sh"
-./gtkcc.sh listApps
-echo "==> Move"
-mv listApps ./apps/native/listApps
-echo "==> Done"
-
-cd prevDir
+# chmod 755 "./gtkcc.sh"
+# ./gtkcc.sh listApps
+# echo "==> Move"
+# mv listApps ./apps/native/listApps
+# echo "==> Done"
+# 
+# cd prevDir
+# 

@@ -9,15 +9,14 @@ arch=x64
 	--platform=linux \
 	--arch=${arch} \
 	--version=1.4.0 \
-	--prune \
 	--ignore=".gitignore" \
 	--ignore=".git" \
 	--ignore="Model.md" \
 	--version-string.FileDescription="Mutant" \
-	--version-string.FileVersion="0.1.0" \
-	--version-string.ProductVersion="0.1.0" \
+	--version-string.FileVersion="0.1.4" \
+	--version-string.ProductVersion="0.1.4" \
 	--version-string.ProductName="Mutant" \
-	--app-version="0.1.0" \
+	--app-version="0.1.4" \
 	--overwrite
 
 # Ownership

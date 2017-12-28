@@ -5,7 +5,7 @@ prevDir=$(pwd)
 cd "$1"
 
 # Electron's version.
-export npm_config_target=1.4.0
+export npm_config_target=1.3.8
 # The architecture of Electron, can be ia32 or x64.
 export npm_config_arch=x64
 # Download headers for Electron.
