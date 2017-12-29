@@ -8,9 +8,9 @@ arch=x64
 ./node_modules/.bin/electron-packager ./ mutant \
 	--platform=linux \
 	--arch=${arch} \
+	--prune=false \
+	--icon=icns/mutant.png \
 	--version=1.4.0 \
-	--ignore=".gitignore" \
-	--ignore=".git" \
 	--ignore="Model.md" \
 	--version-string.FileDescription="Mutant" \
 	--version-string.FileVersion="0.1.4" \
